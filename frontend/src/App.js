@@ -4,7 +4,8 @@ function App() {
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
-    phone: ""
+    phone: "",
+    email: ""
     });
 
   const handleChange = (e) => {
@@ -60,6 +61,16 @@ function App() {
             required
           />
         </div>
+
+        <div >
+          <label >Email:</label > <br />
+          <input
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+        </div >
         
         <br/>
         <button type="submit">Submit</button>
