@@ -64,47 +64,6 @@ function App() {
             required
           />
         </div>
-
-        <div >
-          <label >Email:</label > <br />
-          <input
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
-        </div >
-        
-        <div >
-          <label >Zipcode:</label > <br />
-          <input
-            name="zipcode"
-            value={form.zipcode}
-            onChange={handleChange}
-            required
-          />
-        </div >
-
-        <div >
-          <label >House No:</label > <br />
-          <input
-            name="houseno"
-            value={form.houseno}
-            onChange={handleChange}
-            required
-          />
-        </div >
-
-        <div >
-          <label >Street No:</label > <br />
-          <input
-            name="streetno"
-            value={form.streetno}
-            onChange={handleChange}
-            required
-          />
-        </div >
-        
         <br/>
         <button type="submit">Submit</button>
       </form>
