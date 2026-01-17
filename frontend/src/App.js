@@ -82,6 +82,15 @@ function App() {
             required
           />
         </div >
+        <div >
+          <label >House Number:</label > <br />
+          <input
+            name="houseno"
+            value={form.houseno}
+            onChange={handleChange}
+            required
+          />
+        </div >
         <br/>
         <button type="submit">Submit</button>
       </form>
