@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, Float
+from sqlalchemy import Column, Integer, String, Date, Float, Time
 from database import Base
 
 class User(Base):
@@ -12,3 +12,4 @@ class User(Base):
     zipcode = Column(String(10))
     houseno = Column(String(50))
     dob = Column(Date)
+    time = Column(Time)

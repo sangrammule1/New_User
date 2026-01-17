@@ -35,7 +35,8 @@ def submit_form(user: schemas.UserCreate, db: Session = Depends(get_db)):
         email=user.email,
         zipcode=user.zipcode,
         houseno=user.houseno,
-        dob=user.dob
+        dob=user.dob,
+        time=user.time
     )
     db.add(new_user)
     db.commit()

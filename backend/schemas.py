@@ -9,3 +9,4 @@ class UserCreate(BaseModel):
     zipcode: str
     houseno: Optional[str] = None
     dob: Optional[str] = None
+    time: Optional[str] = None

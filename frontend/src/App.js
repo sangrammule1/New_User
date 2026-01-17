@@ -9,7 +9,8 @@ function App() {
     zipcode: "",
     houseno: "",
     streetno: "",
-    dob: ""
+    dob: "",
+    time: ""
     });
 
   const handleChange = (e) => {
@@ -98,6 +99,16 @@ function App() {
             type="date"
             name="dob"
             value={form.dob}
+            onChange={handleChange}
+            required
+          />
+        </div >
+        <div >
+          <label >Time:</label > <br />
+          <input
+            type="time"
+            name="time"
+            value={form.time}
             onChange={handleChange}
             required
           />
