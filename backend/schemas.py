@@ -8,3 +8,4 @@ class UserCreate(BaseModel):
     email: str
     zipcode: str
     houseno: Optional[str] = None
+    dob: Optional[str] = None

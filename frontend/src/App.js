@@ -8,7 +8,8 @@ function App() {
     email: "",
     zipcode: "",
     houseno: "",
-    streetno: ""
+    streetno: "",
+    dob: ""
     });
 
   const handleChange = (e) => {
@@ -87,6 +88,16 @@ function App() {
           <input
             name="houseno"
             value={form.houseno}
+            onChange={handleChange}
+            required
+          />
+        </div >
+        <div >
+          <label >Date of Birth:</label > <br />
+          <input
+            type="date"
+            name="dob"
+            value={form.dob}
             onChange={handleChange}
             required
           />

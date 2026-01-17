@@ -11,3 +11,4 @@ class User(Base):
     email = Column(String(100))
     zipcode = Column(String(10))
     houseno = Column(String(50))
+    dob = Column(Date)
