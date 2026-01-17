@@ -13,4 +13,5 @@ class User(Base):
     houseno = Column(String(50))
     dob = Column(Date)
     time = Column(Time)
+    create_time = Column(Date)
     update_time = Column(Date)

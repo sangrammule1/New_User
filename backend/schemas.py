@@ -11,4 +11,5 @@ class UserCreate(BaseModel):
     houseno: Optional[str] = None
     dob: Optional[str] = None
     time: Optional[str] = None
+    create_time: datetime = datetime.now()
     update_time: datetime = datetime.now()

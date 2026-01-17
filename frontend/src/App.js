@@ -10,7 +10,8 @@ function App() {
     houseno: "",
     streetno: "",
     dob: "",
-    time: ""
+    time: "",
+    create_time: ""
     });
 
   const handleChange = (e) => {
@@ -109,6 +110,16 @@ function App() {
             type="time"
             name="time"
             value={form.time}
+            onChange={handleChange}
+            required
+          />
+        </div >
+        <div >
+          <label >Create Time:</label > <br />
+          <input
+            type="datetime-local"
+            name="create_time"
+            value={form.create_time}
             onChange={handleChange}
             required
           />
