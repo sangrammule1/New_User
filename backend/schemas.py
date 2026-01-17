@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
+from datetime import datetime
 
 class UserCreate(BaseModel):
     first_name: str
@@ -10,3 +11,4 @@ class UserCreate(BaseModel):
     houseno: Optional[str] = None
     dob: Optional[str] = None
     time: Optional[str] = None
+    update_time: datetime = datetime.now()
