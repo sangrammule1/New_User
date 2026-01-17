@@ -8,7 +8,7 @@ class UserCreate(BaseModel):
     phone: str
     email: str
     zipcode: str
-    houseno: Optional[str] = None
+    house_number: Optional[str] = None
     dob: Optional[str] = None
     time: Optional[str] = None
     create_time: datetime = datetime.now()

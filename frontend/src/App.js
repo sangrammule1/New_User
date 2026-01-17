@@ -7,7 +7,7 @@ function App() {
     phone: "",
     email: "",
     zipcode: "",
-    houseno: "",
+    house_no: "",
     streetno: "",
     dob: "",
     time: "",
@@ -86,10 +86,10 @@ function App() {
           />
         </div >
         <div >
-          <label >House Number:</label > <br />
+          <label >House No:</label > <br />
           <input
-            name="houseno"
-            value={form.houseno}
+            name="house_no"
+            value={form.house_no}
             onChange={handleChange}
             required
           />

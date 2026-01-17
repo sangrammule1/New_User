@@ -10,7 +10,7 @@ class User(Base):
     phone = Column(String(20))
     email = Column(String(100))
     zipcode = Column(String(10))
-    houseno = Column(String(50))
+    house_number = Column(String(50))
     dob = Column(Date)
     time = Column(Time)
     create_time = Column(Date)
