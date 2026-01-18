@@ -6,10 +6,3 @@ class UserCreate(BaseModel):
     first_name: str
     last_name: str
     phone: str
-    email: str
-    zipcode: str
-    house_number: Optional[str] = None
-    dob: Optional[str] = None
-    time: Optional[str] = None
-    create_time: datetime = datetime.now()
-    update_time: datetime = datetime.now()
