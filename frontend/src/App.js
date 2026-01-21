@@ -4,7 +4,8 @@ function App() {
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
-    phone: ""
+    phone: "",
+    zipcode: ""
     });
 
   const handleChange = (e) => {
@@ -58,6 +59,16 @@ function App() {
             value={form.phone}
             onChange={handleChange}
             required
+          />
+        </div>
+        <div >
+          <label >Zipcode:</label > <br />
+          <input
+            name="zipcode"
+            value={form.zipcode}
+            onChange={handleChange}
+            required
+            type="number"
           />
         </div>
         <br/>
