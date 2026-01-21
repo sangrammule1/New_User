@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, Float, Time
+from sqlalchemy import Column, Integer, String, Date, Float, Time, TIMESTAMP
 from database import Base
 
 class User(Base):
@@ -11,3 +11,4 @@ class User(Base):
     email = Column(String(100), nullable=True)
     address = Column(String(40), nullable=True)
     zipcode = Column(Integer)
+    update_time = Column(TIMESTAMP)
