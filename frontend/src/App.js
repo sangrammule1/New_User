@@ -74,6 +74,35 @@ function App() {
             required
           />
         </div>
+        <div >
+          <label >Address:</label > <br />
+          <input
+            name="address"
+            value={form.address}
+            onChange={handleChange}
+            required
+          />
+        </div >
+        <div >
+          <label >Zipcode:</label > <br />
+          <input
+            type="number"
+            name="zipcode"
+            value={form.zipcode}
+            onChange={handleChange}
+            required
+          />
+        </div >
+        <div >
+          <label >Date of Birth:</label > <br />
+          <input
+            type="date"
+            name="dob"
+            value={form.dob}
+            onChange={handleChange}
+            required
+          />
+        </div >
         <br/>
         <button type="submit">Submit</button>
       </form>
