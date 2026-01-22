@@ -10,3 +10,4 @@ class User(Base):
     phone = Column(String(20))
     dob = Column(Date, nullable=True, unique=False)
     zipcode = Column(Integer)
+    email = Column(String(100), nullable=False)
