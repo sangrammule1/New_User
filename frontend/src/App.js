@@ -6,6 +6,7 @@ function App() {
     last_name: "",
     email: "",
     phone: "",
+    address: "",
     zipcode: "",
     dob: ""
     });
@@ -74,6 +75,16 @@ function App() {
           />
         </div>
         
+        <div >
+          <label >Address:</label > <br />
+          <input
+            name="address"
+            value={form.address}
+            onChange={handleChange}
+            required
+          />
+        </div >
+
         <div >
           <label >Zipcode:</label > <br />
           <input

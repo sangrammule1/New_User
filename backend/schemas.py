@@ -9,3 +9,4 @@ class UserCreate(BaseModel):
     email: str
     dob: Optional[datetime] = None
     zipcode: int
+    address: str

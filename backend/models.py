@@ -11,3 +11,4 @@ class User(Base):
     dob = Column(Date, nullable=True, unique=False)
     zipcode = Column(Integer)
     email = Column(String(100), nullable=False)
+    address = Column(String(255))
