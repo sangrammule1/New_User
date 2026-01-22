@@ -64,6 +64,17 @@ function App() {
         </div>
         
         <div >
+          <label >Zipcode:</label > <br />
+          <input
+            type="number"
+            name="zipcode"
+            value={form.zipcode}
+            onChange={handleChange}
+            required
+          />
+        </div >
+
+        <div >
           <label >Date of Birth:</label > <br />
           <input
             type="date"

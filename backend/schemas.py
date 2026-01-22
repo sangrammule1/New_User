@@ -7,3 +7,4 @@ class UserCreate(BaseModel):
     last_name: str
     phone: str
     dob: Optional[datetime] = None
+    zipcode: int
