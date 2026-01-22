@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
+from datetime import datetime
 
 from database import SessionLocal, engine
 import models, schemas
@@ -31,10 +32,7 @@ def submit_form(user: schemas.UserCreate, db: Session = Depends(get_db)):
     new_user = models.User(
         first_name=user.first_name,
         last_name=user.last_name,
-        phone=user.phone,
-        email=user.email,
-        address=user.address,
-        zipcode=user.zipcode
+        phone=user.phone
     )
     db.add(new_user)
     db.commit()
