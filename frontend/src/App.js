@@ -62,6 +62,16 @@ function App() {
             required
           />
         </div>
+        
+        <div >
+          <label >Date of Birth:</label > <br />
+          <input
+            type="date"
+            name="dob"
+            value={form.dob}
+            onChange={handleChange}
+          />
+        </div >
         <br/>
         <button type="submit">Submit</button>
       </form>
