@@ -6,5 +6,3 @@ class UserCreate(BaseModel):
     first_name: str
     last_name: str
     phone: str
-    email: Optional[str] = None
-    House_No: Optional[int] = None

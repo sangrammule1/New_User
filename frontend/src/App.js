@@ -132,23 +132,6 @@ function App() {
           <div className="form-row">
             <div className="form-field">
               <label className="form-label">
-                Email
-              </label>
-              <div className="input-wrapper">
-                <input
-                  className={`form-input ${errors.email ? 'error' : ''}`}
-                  name="email"
-                  value={form.email === null ? "" : form.email} // Display empty string if null
-                  onChange={handleChange}
-                  placeholder="Enter email address"
-                />
-                <span className="input-icon">✉️</span>
-              </div>
-              {errors.email && <span className="error-message">{errors.email}</span>}
-            </div>
-            
-            <div className="form-field">
-              <label className="form-label">
                 Phone<span className="required">*</span>
               </label>
               <div className="input-wrapper">
@@ -163,26 +146,6 @@ function App() {
                 <span className="input-icon">📞</span>
               </div>
               {errors.phone && <span className="error-message">{errors.phone}</span>}
-            </div>
-          </div>
-          
-          <div className="form-row">
-            <div className="form-field">
-              <label className="form-label">
-                House No.
-              </label>
-              <div className="input-wrapper">
-                <input
-                  className={`form-input ${errors.house_no ? 'error' : ''}`}
-                  name="house_no"
-                  type="number" // Specify type as number for integer input
-                  value={form.house_no === null ? "" : form.house_no} // Display empty string if null
-                  onChange={handleChange}
-                  placeholder="Enter house number"
-                />
-                <span className="input-icon">🏠</span>
-              </div>
-              {errors.house_no && <span className="error-message">{errors.house_no}</span>}
             </div>
           </div>
           
