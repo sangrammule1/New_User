@@ -7,3 +7,8 @@ class UserCreate(BaseModel):
     last_name: str
     phone: str
     zipcode: int
+
+class User(UserCreate):
+    id: int
+    create_time: datetime
+    update_time: datetime
