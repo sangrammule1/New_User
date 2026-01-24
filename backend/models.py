@@ -8,5 +8,3 @@ class User(Base):
     first_name = Column(String(100))
     last_name = Column(String(100))
     phone = Column(String(20))
-    zipcode = Column(Integer)
-    update_time = Column(TIMESTAMP)
