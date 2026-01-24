@@ -5,6 +5,7 @@ function App() {
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
+    email: null, // Added email field, String, Nullable
     phone: "",
     house_no: null // Added House_No field, Integer, Nullable
     });
@@ -37,6 +38,7 @@ function App() {
     if (!form.phone.trim()) {
       newErrors.phone = "Phone is required";
     }
+    // No validation for email as it's nullable
     // No validation for house_no as it's nullable
 
     setErrors(newErrors);
@@ -69,6 +71,7 @@ function App() {
         setForm({
           first_name: "",
           last_name: "",
+          email: null, // Reset email to null
           phone: "",
           house_no: null // Reset House_No to null
         });
@@ -129,6 +132,23 @@ function App() {
           <div className="form-row">
             <div className="form-field">
               <label className="form-label">
+                Email
+              </label>
+              <div className="input-wrapper">
+                <input
+                  className={`form-input ${errors.email ? 'error' : ''}`}
+                  name="email"
+                  value={form.email === null ? "" : form.email} // Display empty string if null
+                  onChange={handleChange}
+                  placeholder="Enter email address"
+                />
+                <span className="input-icon">✉️</span>
+              </div>
+              {errors.email && <span className="error-message">{errors.email}</span>}
+            </div>
+            
+            <div className="form-field">
+              <label className="form-label">
                 Phone<span className="required">*</span>
               </label>
               <div className="input-wrapper">
@@ -144,7 +164,9 @@ function App() {
               </div>
               {errors.phone && <span className="error-message">{errors.phone}</span>}
             </div>
-            
+          </div>
+          
+          <div className="form-row">
             <div className="form-field">
               <label className="form-label">
                 House No.
