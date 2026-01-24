@@ -5,7 +5,8 @@ function App() {
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
-    phone: ""
+    phone: "",
+    house_no: null // Added House_No field, Integer, Nullable
     });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -13,7 +14,11 @@ function App() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    // For house_no, convert to integer if it's not empty, otherwise set to null
+    const processedValue = name === "house_no" ? (value === "" ? null : parseInt(value, 10)) : value;
+    
+    setForm({ ...form, [name]: processedValue });
+    
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors({ ...errors, [name]: "" });
@@ -32,6 +37,7 @@ function App() {
     if (!form.phone.trim()) {
       newErrors.phone = "Phone is required";
     }
+    // No validation for house_no as it's nullable
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -63,7 +69,8 @@ function App() {
         setForm({
           first_name: "",
           last_name: "",
-          phone: ""
+          phone: "",
+          house_no: null // Reset House_No to null
         });
       }
     } catch (error) {
@@ -136,6 +143,24 @@ function App() {
                 <span className="input-icon">📞</span>
               </div>
               {errors.phone && <span className="error-message">{errors.phone}</span>}
+            </div>
+            
+            <div className="form-field">
+              <label className="form-label">
+                House No.
+              </label>
+              <div className="input-wrapper">
+                <input
+                  className={`form-input ${errors.house_no ? 'error' : ''}`}
+                  name="house_no"
+                  type="number" // Specify type as number for integer input
+                  value={form.house_no === null ? "" : form.house_no} // Display empty string if null
+                  onChange={handleChange}
+                  placeholder="Enter house number"
+                />
+                <span className="input-icon">🏠</span>
+              </div>
+              {errors.house_no && <span className="error-message">{errors.house_no}</span>}
             </div>
           </div>
           
