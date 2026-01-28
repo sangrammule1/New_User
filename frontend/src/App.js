@@ -2,16 +2,62 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
+  const translations = {
+    en: {
+      firstName: "First Name",
+      lastName: "Last Name",
+      phone: "Phone",
+      email: "Email",
+      required: "*",
+      firstNamePlaceholder: "Enter first name",
+      lastNamePlaceholder: "Enter last name",
+      phonePlaceholder: "Enter phone number",
+      emailPlaceholder: "Enter email address",
+      firstNameError: "First name is required",
+      lastNameError: "Last name is required",
+      phoneError: "Phone is required",
+      registrationTitle: "Registration Form",
+      registrationSubtitle: "Please fill in all required fields to complete your registration",
+      cancelButton: "Cancel",
+      submitButton: "Submit",
+      submittingText: "Submitting...",
+      successMessage: "Form submitted successfully!",
+      errorMessage: "An error occurred. Please try again.",
+    },
+    hi: {
+      firstName: "पहला नाम",
+      lastName: "अंतिम नाम",
+      phone: "फ़ोन",
+      email: "ईमेल",
+      required: "*",
+      firstNamePlaceholder: "पहला नाम दर्ज करें",
+      lastNamePlaceholder: "अंतिम नाम दर्ज करें",
+      phonePlaceholder: "फ़ोन नंबर दर्ज करें",
+      emailPlaceholder: "ईमेल पता दर्ज करें",
+      firstNameError: "पहला नाम आवश्यक है",
+      lastNameError: "अंतिम नाम आवश्यक है",
+      phoneError: "फ़ोन आवश्यक है",
+      registrationTitle: "पंजीकरण फ़ॉर्म",
+      registrationSubtitle: "अपना पंजीकरण पूरा करने के लिए कृपया सभी आवश्यक फ़ील्ड भरें",
+      cancelButton: "रद्द करें",
+      submitButton: "सबमिट करें",
+      submittingText: "सबमिट हो रहा है...",
+      successMessage: "फ़ॉर्म सफलतापूर्वक सबमिट हो गया!",
+      errorMessage: "एक त्रुटि हुई। कृपया पुनः प्रयास करें।",
+    },
+  };
+
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
     phone: "",
-    email: "" // Added email field
-    });
+    email: "",
+  });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
-  const [isDarkMode, setIsDarkMode] = useState(false); // State for dark mode
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [language, setLanguage] = useState("en"); // State for language
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -19,12 +65,8 @@ function App() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // For house_no, convert to integer if it's not empty, otherwise set to null
     const processedValue = name === "house_no" ? (value === "" ? null : parseInt(value, 10)) : value;
-    
     setForm({ ...form, [name]: processedValue });
-    
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors({ ...errors, [name]: "" });
     }
@@ -32,18 +74,17 @@ function App() {
 
   const validateForm = () => {
     const newErrors = {};
-    
+    const currentTranslations = translations[language];
+
     if (!form.first_name.trim()) {
-      newErrors.first_name = "First name is required";
+      newErrors.first_name = currentTranslations.firstNameError;
     }
     if (!form.last_name.trim()) {
-      newErrors.last_name = "Last name is required";
+      newErrors.last_name = currentTranslations.lastNameError;
     }
     if (!form.phone.trim()) {
-      newErrors.phone = "Phone is required";
+      newErrors.phone = currentTranslations.phoneError;
     }
-    // No validation for email as it's nullable
-    // No validation for house_no as it's nullable
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -51,7 +92,7 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -62,43 +103,54 @@ function App() {
       const response = await fetch("http://localhost:6080/submit", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(form)
+        body: JSON.stringify(form),
       });
 
       const data = await response.json();
-      alert(data.message);
-      
-      // Reset form on success
+      alert(data.message || translations[language].successMessage);
+
       if (response.ok) {
         setForm({
           first_name: "",
           last_name: "",
           phone: "",
-          email: "" // Reset email field
+          email: "",
         });
       }
     } catch (error) {
-      alert("An error occurred. Please try again.");
+      alert(translations[language].errorMessage);
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const handleLanguageChange = (e) => {
+    setLanguage(e.target.value);
+  };
+
+  const currentTranslations = translations[language];
+
   return (
     <div className={`form-container ${isDarkMode ? 'dark' : ''}`}>
+      <div className="language-selector-container">
+        <select value={language} onChange={handleLanguageChange}>
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+        </select>
+      </div>
       <div className="form-panel">
         <div className="form-header">
-          <h2 className="form-title">Registration Form</h2>
-          <p className="form-subtitle">Please fill in all required fields to complete your registration</p>
+          <h2 className="form-title">{currentTranslations.registrationTitle}</h2>
+          <p className="form-subtitle">{currentTranslations.registrationSubtitle}</p>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="registration-form">
           <div className="form-row">
             <div className="form-field">
               <label className="form-label">
-                First Name<span className="required">*</span>
+                {currentTranslations.firstName}<span className="required">{currentTranslations.required}</span>
               </label>
               <div className="input-wrapper">
                 <input
@@ -106,7 +158,7 @@ function App() {
                   name="first_name"
                   value={form.first_name}
                   onChange={handleChange}
-                  placeholder="Enter first name"
+                  placeholder={currentTranslations.firstNamePlaceholder}
                   required
                 />
                 <span className="input-icon">👤</span>
@@ -116,7 +168,7 @@ function App() {
 
             <div className="form-field">
               <label className="form-label">
-                Last Name<span className="required">*</span>
+                {currentTranslations.lastName}<span className="required">{currentTranslations.required}</span>
               </label>
               <div className="input-wrapper">
                 <input
@@ -124,7 +176,7 @@ function App() {
                   name="last_name"
                   value={form.last_name}
                   onChange={handleChange}
-                  placeholder="Enter last name"
+                  placeholder={currentTranslations.lastNamePlaceholder}
                   required
                 />
                 <span className="input-icon">👤</span>
@@ -135,7 +187,7 @@ function App() {
           <div className="form-row">
             <div className="form-field">
               <label className="form-label">
-                Phone<span className="required">*</span>
+                {currentTranslations.phone}<span className="required">{currentTranslations.required}</span>
               </label>
               <div className="input-wrapper">
                 <input
@@ -143,18 +195,17 @@ function App() {
                   name="phone"
                   value={form.phone}
                   onChange={handleChange}
-                  placeholder="Enter phone number"
+                  placeholder={currentTranslations.phonePlaceholder}
                   required
                 />
                 <span className="input-icon">📞</span>
               </div>
               {errors.phone && <span className="error-message">{errors.phone}</span>}
             </div>
-            
-            {/* Email field */}
+
             <div className="form-field">
               <label className="form-label">
-                Email
+                {currentTranslations.email}
               </label>
               <div className="input-wrapper">
                 <input
@@ -162,34 +213,33 @@ function App() {
                   name="email"
                   value={form.email}
                   onChange={handleChange}
-                  placeholder="Enter email address"
+                  placeholder={currentTranslations.emailPlaceholder}
                 />
                 <span className="input-icon">✉️</span>
               </div>
             </div>
           </div>
-          
+
           <div className="form-actions">
             <button type="button" className="cancel-button">
-              <span>Cancel</span>
+              <span>{currentTranslations.cancelButton}</span>
             </button>
             <button type="submit" className="submit-button" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
                   <span className="spinner"></span>
-                  <span>Submitting...</span>
+                  <span>{currentTranslations.submittingText}</span>
                 </>
               ) : (
                 <>
                   <span>✓</span>
-                  <span>Submit</span>
+                  <span>{currentTranslations.submitButton}</span>
                 </>
               )}
             </button>
           </div>
         </form>
       </div>
-      {/* Dark mode toggle */}
       <div className="dark-mode-toggle-container">
         <button onClick={toggleDarkMode} className="dark-mode-toggle-button">
           {isDarkMode ? '☀️' : '🌙'}

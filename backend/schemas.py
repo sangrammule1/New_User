@@ -7,3 +7,4 @@ class UserCreate(BaseModel):
     last_name: str
     phone: str
     email: Optional[str] = None
+    language: str = "en"
