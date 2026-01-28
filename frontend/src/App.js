@@ -5,7 +5,8 @@ function App() {
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
-    phone: ""
+    phone: "",
+    email: "" // Added email field
     });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -69,7 +70,8 @@ function App() {
         setForm({
           first_name: "",
           last_name: "",
-          phone: ""
+          phone: "",
+          email: "" // Reset email field
         });
       }
     } catch (error) {
@@ -142,6 +144,23 @@ function App() {
                 <span className="input-icon">📞</span>
               </div>
               {errors.phone && <span className="error-message">{errors.phone}</span>}
+            </div>
+            
+            {/* Email field */}
+            <div className="form-field">
+              <label className="form-label">
+                Email
+              </label>
+              <div className="input-wrapper">
+                <input
+                  className="form-input"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="Enter email address"
+                />
+                <span className="input-icon">✉️</span>
+              </div>
             </div>
           </div>
           
