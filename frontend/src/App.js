@@ -5,9 +5,7 @@ function App() {
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
-    email: null, // Added email field, String, Nullable
-    phone: "",
-    house_no: null // Added House_No field, Integer, Nullable
+    phone: ""
     });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -71,9 +69,7 @@ function App() {
         setForm({
           first_name: "",
           last_name: "",
-          email: null, // Reset email to null
-          phone: "",
-          house_no: null // Reset House_No to null
+          phone: ""
         });
       }
     } catch (error) {
