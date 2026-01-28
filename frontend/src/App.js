@@ -11,6 +11,11 @@ function App() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isDarkMode, setIsDarkMode] = useState(false); // State for dark mode
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -82,7 +87,7 @@ function App() {
   };
 
   return (
-    <div className="form-container">
+    <div className={`form-container ${isDarkMode ? 'dark' : ''}`}>
       <div className="form-panel">
         <div className="form-header">
           <h2 className="form-title">Registration Form</h2>
@@ -183,6 +188,12 @@ function App() {
             </button>
           </div>
         </form>
+      </div>
+      {/* Dark mode toggle */}
+      <div className="dark-mode-toggle-container">
+        <button onClick={toggleDarkMode} className="dark-mode-toggle-button">
+          {isDarkMode ? '☀️' : '🌙'}
+        </button>
       </div>
     </div>
   );
