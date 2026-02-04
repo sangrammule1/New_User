@@ -7,7 +7,8 @@ function App() {
     last_name: "",
     phone: "",
     email_id: "",
-    address: ""
+    address: "",
+    dob: "" // Added DOB field
     });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,6 +41,10 @@ function App() {
     }
     // No validation for email as it's nullable
     // No validation for house_no as it's nullable
+    // Added validation for DOB
+    if (!form.dob) {
+      newErrors.dob = "Date of Birth is required";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -73,7 +78,8 @@ function App() {
           last_name: "",
           phone: "",
           email_id: "",
-          address: ""
+          address: "",
+          dob: "" // Reset DOB field
         });
       }
     } catch (error) {
@@ -180,6 +186,25 @@ function App() {
                 />
                 <span className="input-icon">🏠</span>
               </div>
+            </div>
+            
+            {/* DOB Field */}
+            <div className="form-field">
+              <label className="form-label">
+                Date of Birth<span className="required">*</span>
+              </label>
+              <div className="input-wrapper">
+                <input
+                  type="date"
+                  className={`form-input ${errors.dob ? 'error' : ''}`}
+                  name="dob"
+                  value={form.dob}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="input-icon">📅</span>
+              </div>
+              {errors.dob && <span className="error-message">{errors.dob}</span>}
             </div>
           </div>
           

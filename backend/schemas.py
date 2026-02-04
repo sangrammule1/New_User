@@ -8,3 +8,4 @@ class UserCreate(BaseModel):
     phone: str
     email_id: str
     address: str
+    dob: Optional[datetime] = None
