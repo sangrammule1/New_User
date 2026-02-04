@@ -5,7 +5,8 @@ function App() {
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
-    phone: ""
+    phone: "",
+    email_id: ""
     });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -69,7 +70,8 @@ function App() {
         setForm({
           first_name: "",
           last_name: "",
-          phone: ""
+          phone: "",
+          email_id: ""
         });
       }
     } catch (error) {
@@ -142,6 +144,22 @@ function App() {
                 <span className="input-icon">📞</span>
               </div>
               {errors.phone && <span className="error-message">{errors.phone}</span>}
+            </div>
+            
+            <div className="form-field">
+              <label className="form-label">
+                Email ID
+              </label>
+              <div className="input-wrapper">
+                <input
+                  className="form-input"
+                  name="email_id"
+                  value={form.email_id}
+                  onChange={handleChange}
+                  placeholder="Enter email address"
+                />
+                <span className="input-icon">✉️</span>
+              </div>
             </div>
           </div>
           
