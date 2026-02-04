@@ -6,7 +6,8 @@ function App() {
     first_name: "",
     last_name: "",
     phone: "",
-    email_id: ""
+    email_id: "",
+    address: ""
     });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -71,7 +72,8 @@ function App() {
           first_name: "",
           last_name: "",
           phone: "",
-          email_id: ""
+          email_id: "",
+          address: ""
         });
       }
     } catch (error) {
@@ -159,6 +161,24 @@ function App() {
                   placeholder="Enter email address"
                 />
                 <span className="input-icon">✉️</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="form-row">
+            <div className="form-field">
+              <label className="form-label">
+                Address
+              </label>
+              <div className="input-wrapper">
+                <input
+                  className="form-input"
+                  name="address"
+                  value={form.address}
+                  onChange={handleChange}
+                  placeholder="Enter your address"
+                />
+                <span className="input-icon">🏠</span>
               </div>
             </div>
           </div>
