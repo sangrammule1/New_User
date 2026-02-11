@@ -8,7 +8,8 @@ function App() {
     phone: "",
     email_id: "",
     address: "",
-    dob: "" // Added DOB field
+    dob: "", // Added DOB field
+    zipcode7: "" // Added zipcode7 field
     });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -45,6 +46,10 @@ function App() {
     if (!form.dob) {
       newErrors.dob = "Date of Birth is required";
     }
+    // Added validation for zipcode7
+    if (!form.zipcode7.trim()) {
+      newErrors.zipcode7 = "Zipcode is required";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -79,7 +84,8 @@ function App() {
           phone: "",
           email_id: "",
           address: "",
-          dob: "" // Reset DOB field
+          dob: "", // Reset DOB field
+          zipcode7: "" // Reset zipcode7 field
         });
       }
     } catch (error) {
@@ -205,6 +211,27 @@ function App() {
                 <span className="input-icon">📅</span>
               </div>
               {errors.dob && <span className="error-message">{errors.dob}</span>}
+            </div>
+          </div>
+
+          {/* Zipcode7 Field */}
+          <div className="form-row">
+            <div className="form-field">
+              <label className="form-label">
+                Zipcode<span className="required">*</span>
+              </label>
+              <div className="input-wrapper">
+                <input
+                  className={`form-input ${errors.zipcode7 ? 'error' : ''}`}
+                  name="zipcode7"
+                  value={form.zipcode7}
+                  onChange={handleChange}
+                  placeholder="Enter your zipcode"
+                  required
+                />
+                <span className="input-icon">📍</span>
+              </div>
+              {errors.zipcode7 && <span className="error-message">{errors.zipcode7}</span>}
             </div>
           </div>
           
