@@ -10,4 +10,5 @@ class UserCreate(BaseModel):
     street1: str
     address: str
     zipcode7: str
+    route: str
     dob: Optional[datetime] = None
