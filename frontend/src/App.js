@@ -8,6 +8,7 @@ function App() {
     phone: "",
     email_id: "",
     address: "",
+    street1: "", // Added street1 field
     dob: "", // Added DOB field
     zipcode7: "" // Added zipcode7 field
     });
@@ -42,6 +43,10 @@ function App() {
     }
     // No validation for email as it's nullable
     // No validation for house_no as it's nullable
+    // Added validation for street1
+    if (!form.street1.trim()) {
+      newErrors.street1 = "Street 1 is required";
+    }
     // Added validation for DOB
     if (!form.dob) {
       newErrors.dob = "Date of Birth is required";
@@ -84,6 +89,7 @@ function App() {
           phone: "",
           email_id: "",
           address: "",
+          street1: "", // Reset street1 field
           dob: "", // Reset DOB field
           zipcode7: "" // Reset zipcode7 field
         });
@@ -194,7 +200,28 @@ function App() {
               </div>
             </div>
             
-            {/* DOB Field */}
+            {/* Street1 Field */}
+            <div className="form-field">
+              <label className="form-label">
+                Street 1<span className="required">*</span>
+              </label>
+              <div className="input-wrapper">
+                <input
+                  className={`form-input ${errors.street1 ? 'error' : ''}`}
+                  name="street1"
+                  value={form.street1}
+                  onChange={handleChange}
+                  placeholder="Enter street 1"
+                  required
+                />
+                <span className="input-icon">🛣️</span>
+              </div>
+              {errors.street1 && <span className="error-message">{errors.street1}</span>}
+            </div>
+          </div>
+
+          {/* DOB Field */}
+          <div className="form-row">
             <div className="form-field">
               <label className="form-label">
                 Date of Birth<span className="required">*</span>
@@ -212,10 +239,8 @@ function App() {
               </div>
               {errors.dob && <span className="error-message">{errors.dob}</span>}
             </div>
-          </div>
 
-          {/* Zipcode7 Field */}
-          <div className="form-row">
+            {/* Zipcode7 Field */}
             <div className="form-field">
               <label className="form-label">
                 Zipcode<span className="required">*</span>

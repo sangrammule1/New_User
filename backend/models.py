@@ -10,5 +10,6 @@ class User(Base):
     phone = Column(String(20))
     email_id = Column(String(100))
     address = Column(String(255))
+    street1 = Column(String(255))
     zipcode7 = Column(String(7))
     dob = Column(Date)
