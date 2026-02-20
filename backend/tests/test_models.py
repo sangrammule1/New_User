@@ -11,6 +11,7 @@ class User(Base):
     name = Column(String)
     email = Column(String)
     route = Column(String)
+    name1 = Column(String)
 
 engine = create_engine('sqlite:///:memory:')
 Base.metadata.create_all(engine)
@@ -47,3 +48,22 @@ def test_user_fields():
     assert retrieved_user.email == "test@example.com"
     assert retrieved_user.route == "Elm Avenue"
     assert retrieved_user.id is not None
+
+def test_add_name1_field():
+    new_user = User(name="Alice Smith", email="alice.smith@example.com", route="Oak Avenue", name1="Alice")
+    session.add(new_user)
+    session.commit()
+
+    retrieved_user = session.query(User).filter_by(name="Alice Smith").first()
+    assert retrieved_user is not None
+    assert retrieved_user.name1 == "Alice"
+
+def test_name1_field_creation_without_value():
+    new_user = User(name="Bob Johnson", email="bob.johnson@example.com", route="Pine Street")
+    session.add(new_user)
+    session.commit()
+
+    retrieved_user = session.query(User).filter_by(name="Bob Johnson").first()
+    assert retrieved_user is not None
+    assert hasattr(retrieved_user, 'name1')
+    assert retrieved_user.name1 is None

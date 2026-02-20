@@ -6,6 +6,7 @@ from pydantic import BaseModel
 class User(BaseModel):
     id: int
     name: str
+    name1: str
     email: Optional[str] = None
     is_active: bool = True
     route: str
@@ -19,10 +20,11 @@ class Item(BaseModel):
 
 
 def test_user_schema():
-    user_data = {"id": 1, "name": "John Doe", "route": "/users/1"}
+    user_data = {"id": 1, "name": "John Doe", "name1": "John", "route": "/users/1"}
     user = User(**user_data)
     assert user.id == 1
     assert user.name == "John Doe"
+    assert user.name1 == "John"
     assert user.email is None
     assert user.is_active is True
     assert user.route == "/users/1"
@@ -30,6 +32,7 @@ def test_user_schema():
     user_data_full = {
         "id": 2,
         "name": "Jane Doe",
+        "name1": "Jane",
         "email": "jane.doe@example.com",
         "is_active": False,
         "route": "/users/2",
@@ -37,6 +40,7 @@ def test_user_schema():
     user_full = User(**user_data_full)
     assert user_full.id == 2
     assert user_full.name == "Jane Doe"
+    assert user_full.name1 == "Jane"
     assert user_full.email == "jane.doe@example.com"
     assert user_full.is_active is False
     assert user_full.route == "/users/2"

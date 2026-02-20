@@ -14,3 +14,4 @@ class User(Base):
     zipcode7 = Column(String(7))
     dob = Column(Date)
     route = Column(String(255))
+    name1 = Column(String(100))

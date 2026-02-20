@@ -11,7 +11,8 @@ function App() {
     street1: "", // Added street1 field
     dob: "", // Added DOB field
     zipcode7: "", // Added zipcode7 field
-    route: "" // Added route field
+    route: "", // Added route field
+    name1: "" // Added name1 field
     });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,6 +61,10 @@ function App() {
     if (!form.route.trim()) {
       newErrors.route = "Route is required";
     }
+    // Added validation for name1
+    if (!form.name1.trim()) {
+      newErrors.name1 = "Name1 is required";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -97,7 +102,8 @@ function App() {
           street1: "", // Reset street1 field
           dob: "", // Reset DOB field
           zipcode7: "", // Reset zipcode7 field
-          route: "" // Reset route field
+          route: "", // Reset route field
+          name1: "" // Reset name1 field
         });
       }
     } catch (error) {
@@ -284,6 +290,25 @@ function App() {
                 <span className="input-icon">🗺️</span>
               </div>
               {errors.route && <span className="error-message">{errors.route}</span>}
+            </div>
+
+            {/* Name1 Field */}
+            <div className="form-field">
+              <label className="form-label">
+                Name 1<span className="required">*</span>
+              </label>
+              <div className="input-wrapper">
+                <input
+                  className={`form-input ${errors.name1 ? 'error' : ''}`}
+                  name="name1"
+                  value={form.name1}
+                  onChange={handleChange}
+                  placeholder="Enter name 1"
+                  required
+                />
+                <span className="input-icon">👤</span>
+              </div>
+              {errors.name1 && <span className="error-message">{errors.name1}</span>}
             </div>
           </div>
           

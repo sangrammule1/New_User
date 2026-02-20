@@ -84,3 +84,39 @@ def test_update_user_with_street1():
     assert response.json()["full_name"] == "Jane Doe Updated"
     assert response.json()["street1"] == "456 Oak Ave"
     assert response.json()["route"] == "Pine Ln"
+
+
+def test_create_user_with_name1():
+    response = client.post(
+        "/users/",
+        json={"username": "peterpan", "email": "peter.pan@example.com", "full_name": "Peter Pan", "name1": "Neverland", "route": "Fantasy Rd"},
+    )
+    assert response.status_code == 200
+    assert response.json()["username"] == "peterpan"
+    assert response.json()["email"] == "peter.pan@example.com"
+    assert response.json()["full_name"] == "Peter Pan"
+    assert response.json()["name1"] == "Neverland"
+    assert response.json()["route"] == "Fantasy Rd"
+
+
+def test_read_user_with_name1():
+    response = client.get("/users/peterpan")
+    assert response.status_code == 200
+    assert response.json()["username"] == "peterpan"
+    assert response.json()["email"] == "peter.pan@example.com"
+    assert response.json()["full_name"] == "Peter Pan"
+    assert response.json()["name1"] == "Neverland"
+    assert response.json()["route"] == "Fantasy Rd"
+
+
+def test_update_user_with_name1():
+    response = client.put(
+        "/users/peterpan",
+        json={"username": "peterpan", "email": "peter.pan.updated@example.com", "full_name": "Peter Pan Updated", "name1": "Second Star", "route": "Dream Ln"},
+    )
+    assert response.status_code == 200
+    assert response.json()["username"] == "peterpan"
+    assert response.json()["email"] == "peter.pan.updated@example.com"
+    assert response.json()["full_name"] == "Peter Pan Updated"
+    assert response.json()["name1"] == "Second Star"
+    assert response.json()["route"] == "Dream Ln"
